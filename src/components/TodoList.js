@@ -5,7 +5,7 @@ class TodoList extends Component {
     render() {
         const todolist = this.props.todos.map(todo => 
             <li key = {todo.id} className = "todolist__item">
-                <Todo todo = {todo} />
+                <Todo isCompleted = {todo.completed} text = {todo.text}/>
             </li>
         )
         return (
