@@ -19,13 +19,22 @@ class App extends Component {
     };
 
     completeTodo = (id) => {
-        this.setState(this.state.todos.map(todo => {
-            if (todo.id === id) {
-                todo.completed = !todo.completed;
-            }
-            return todo;
-        }))
-    }
+        this.setState({
+            
+            todos: this.state.todos.map(todo => {
+                if (todo.id === id) {
+                    todo.completed = !todo.completed;
+                }
+                return todo;
+            })
+        })
+    };
+
+    removeTodo = (id) => {
+        this.setState({
+            todos: this.state.todos.filter(todo => todo.id !== id)
+        })
+    };
 
 
     render() {
@@ -39,6 +48,7 @@ class App extends Component {
                 {this.state.todos.length ? 
                 <TodoList   todos = {this.state.todos}
                             completeTodo = {this.completeTodo}
+                            removeTodo = {this.removeTodo}
                 /> : <p>No todos!</p>}
             </div>
         )

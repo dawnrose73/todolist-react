@@ -5,7 +5,7 @@ import DeleteBtn from './buttons/DeleteBtn';
 
 class Todo extends Component {
     render() {
-        const {todo, completeTodo} = this.props;
+        const {todo, completeTodo, removeTodo} = this.props;
         return (
             <div className = {todo.completed ? 'todo todo--completed' : 'todo'}>
                 <div className = 'todo__item'>{todo.title}</div>
@@ -13,7 +13,7 @@ class Todo extends Component {
                 <div className = 'todo__buttons'>
                     <CompleteBtn todo = {todo} completeTodo = {completeTodo}/>
                     <EditBtn />
-                    <DeleteBtn />
+                    <DeleteBtn todo = {todo} removeTodo = {removeTodo}/>
                 </div>
             </div>
         )
