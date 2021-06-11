@@ -1,17 +1,16 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 
 class CompleteBtn extends Component {
     render() {
-        const {completeClick, completed, editMode} = this.props
+        const {todo, completeTodo} = this.props;
         return (
             <button className = 'todo__complete-btn'
-                    onClick = {completeClick}
-                    disabled = {editMode}
+                    onClick = {() => completeTodo(todo.id)}
             >
-                <i className = {completed ? 'fas fa-undo' : 'fas fa-check'}></i>
+                <i className = {todo.completed ? 'fas fa-undo' : 'fas fa-check'}></i>
             </button>
         )
     }
-}
+};
 
-export default CompleteBtn
+export default CompleteBtn;

@@ -1,0 +1,354 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  body {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f6d365), to(#fda085));
+    background-image: linear-gradient(180deg, #f6d365, #fda085);
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    min-width: 100%;
+  }
+  
+  .header {
+    font-size: 1.5rem;
+    min-height: 20vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  /* body form {
+    min-height: 20vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  body form div.enter-todo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  body form div.enter-todo input {
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    padding: 0.5rem;
+    background: #ffffff;
+    max-width: 100%;
+  }
+  
+  body form div.enter-todo button {
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    padding: 0.5rem;
+    background: #ffffff;
+    color: #d88771;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  
+  body form div.enter-todo button:hover {
+    background: #d88771;
+    color: #ffffff;
+  }
+  
+  select {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    border-radius: 0;
+    outline: none;
+    border: none;
+    color: #d88771;
+    background: #ffffff;
+    width: 10rem;
+    cursor: pointer;
+    padding: 1.2rem;
+  }
+  
+  .select {
+    margin-left: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .select::after {
+    content: "\25BC";
+    position: absolute;
+    background: #d88771;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+    padding: 1rem;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  .select:hover::after {
+    background: #ffffff;
+    color: #d88771;
+  }
+   */
+
+  .todolist {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .todolist__items {
+    min-width: 40%;
+    list-style: none;
+  }
+  
+  .todo {
+    margin: 0.5rem;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 1.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  .todo__item {
+    padding: 0 0.5rem;
+    margin: 0 0.5rem;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+  
+  .todo__edit {
+    display: none;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    outline: 1px solid #ff6f47;
+    border: none;
+    background: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    padding: 0 0.5rem;
+    max-width: 100%;
+  } 
+  
+  .fa-check,
+  .fa-trash,
+  .fa-undo,
+  .fa-edit,
+  .fa-save {
+    pointer-events: none;
+  }
+  
+  .todo--completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+  
+  /* .todo--fall {
+    -webkit-transform: translateY(8rem) rotateZ(20deg);
+            transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
+  } */
+  
+  /* @media (max-width: 600px) {
+    form {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      margin-bottom: 1.5rem;
+    }
+    form div.enter-todo {
+      margin-bottom: 0.5rem;
+      max-width: 80%;
+    }
+    form div.enter-todo .todo-button,
+    form div.enter-todo .todo-button:hover {
+      color: #ffffff;
+      background: #d88771;
+    }
+    .select::after, .select:hover::after {
+      background: #d88771;
+      color: #ffffff;
+    }
+    .todo-buttons .complete-btn {
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      padding: 1rem;
+      color: #ffffff;
+      cursor: pointer;
+      min-width: 50px;
+      background: #1bc23f;
+    }
+    .todo-buttons .edit-btn {
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      padding: 1rem;
+      color: #ffffff;
+      cursor: pointer;
+      min-width: 50px;
+      background: #f2c541;
+    }
+    .todo-buttons .trash-btn {
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      padding: 1rem;
+      color: #ffffff;
+      cursor: pointer;
+      min-width: 50px;
+      background: #ff6f47;
+    }
+  } */
+  
+  /* @media all and (max-width: 500px) {
+    .todo {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+    }
+    .todo .todo-buttons {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%;
+    }
+    .todo .todo-buttons .complete-btn,
+    .todo .todo-buttons .edit-btn,
+    .todo .todo-buttons .trash-btn {
+      width: -webkit-fill-available;
+      width: -moz-available;
+      width: stretch;
+    }
+  } */
+  
+  @media all and (min-width: 601px) {
+    .todo__complete-btn {
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      padding: 1rem;
+      color: #ffffff;
+      cursor: pointer;
+      min-width: 50px;
+      background: #1bc23f;
+    }
+    .todo__complete-btn:hover {
+      background: #ffffff;
+      color: #1bc23f;
+    }
+    .todo__complete-btn:disabled:hover {
+      background: #1bc23f;
+      color: #ffffff;
+    }
+    .todo__edit-btn {
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      padding: 1rem;
+      color: #ffffff;
+      cursor: pointer;
+      min-width: 50px;
+      background: #f2c541;
+    }
+    .todo__edit-btn:hover {
+      background: #ffffff;
+      color: #f2c541;
+    }
+    .todo__edit-btn:disabled:hover {
+      background: #f2c541;
+      color: #ffffff;
+    }
+    .todo__delete-btn {
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      padding: 1rem;
+      color: #ffffff;
+      cursor: pointer;
+      min-width: 50px;
+      background: #ff6f47;
+    }
+    .todo__delete-btn:hover {
+      background: #ffffff;
+      color: #ff6f47;
+    }
+  }
+  
+  /* @media (max-width: 347px) {
+    .todo-edit {
+      line-height: 70px;
+    }
+  } */
