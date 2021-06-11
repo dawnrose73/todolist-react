@@ -36,6 +36,18 @@ class App extends Component {
         })
     };
 
+    editTodo = (id, value) => {
+        this.setState({
+            
+            todos: this.state.todos.map(todo => {
+                if (todo.id === id) {
+                    todo.title = value
+                }
+                return todo;
+            })
+        })
+    }
+
 
     render() {
         console.log(this.state.todos);
@@ -49,6 +61,7 @@ class App extends Component {
                 <TodoList   todos = {this.state.todos}
                             completeTodo = {this.completeTodo}
                             removeTodo = {this.removeTodo}
+                            onCreate = {this.editTodo}
                 /> : <p>No todos!</p>}
             </div>
         )
