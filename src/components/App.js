@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import AddTodo from './AddTodo';
+import FilterTodos from './FilterTodos';
 import TodoList from './TodoList';
 
 
@@ -16,7 +17,8 @@ class App extends Component {
                 title: "wash dishes",
                 completed: false
             }
-        ]
+        ],
+        filteredTodos: []
     };
 
     completeTodo = (id) => {
@@ -58,6 +60,26 @@ class App extends Component {
         })
     };
 
+    filterTodos = (option) => {
+        switch(option) {
+            case 'completed': 
+                this.setState({
+                    filteredTodos: this.state.todos.filter(todo => todo.completed !== false)
+                });
+                break;
+            case 'uncompleted': 
+                this.setState({
+                    filteredTodos: this.state.todos.filter(todo => todo.completed !== true)
+                });
+                break;
+            default:
+                this.setState({
+                    filteredTodos: []
+                });
+                break;
+        }
+    }
+
     render() {
         console.log(this.state.todos);
         return (
@@ -68,6 +90,7 @@ class App extends Component {
 
                 <div className = 'todo-form'>
                     <AddTodo createTodo = {this.addTodo}/>
+                    <FilterTodos filterTodos = {this.filterTodos}/>
                 </div>
 
                 {this.state.todos.length ? 
@@ -75,6 +98,7 @@ class App extends Component {
                             completeTodo = {this.completeTodo}
                             removeTodo = {this.removeTodo}
                             onCreate = {this.editTodo}
+                            filteredTodos = {this.state.filteredTodos}
                 /> : <p className = 'no-todos'>No todos!</p>}
             </div>
         )

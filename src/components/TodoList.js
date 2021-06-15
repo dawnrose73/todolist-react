@@ -3,8 +3,8 @@ import Todo from './Todo';
 
 class TodoList extends Component {
     render() {
-        const {todos, completeTodo, removeTodo, onCreate} = this.props;
-        const todolist = todos.map(todo => 
+        const {todos, completeTodo, removeTodo, onCreate, filteredTodos} = this.props;
+        const todolist = (filteredTodos.length ? filteredTodos : todos).map(todo => 
             <li key = {todo.id} className = "todolist__item">
                 <Todo   todo = {todo}
                         completeTodo = {completeTodo}
