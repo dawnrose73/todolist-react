@@ -18,7 +18,7 @@ class App extends Component {
                 completed: false
             }
         ],
-        filteredTodos: []
+        filtered: 'all'
     };
 
     completeTodo = (id) => {
@@ -60,24 +60,10 @@ class App extends Component {
         })
     };
 
-    filterTodos = (option) => {
-        switch(option) {
-            case 'completed': 
-                this.setState({
-                    filteredTodos: this.state.todos.filter(todo => todo.completed !== false)
-                });
-                break;
-            case 'uncompleted': 
-                this.setState({
-                    filteredTodos: this.state.todos.filter(todo => todo.completed !== true)
-                });
-                break;
-            default:
-                this.setState({
-                    filteredTodos: []
-                });
-                break;
-        }
+    changeFilter = (option) => {
+        this.setState({
+            filtered: option
+        })
     }
 
     render() {
@@ -90,15 +76,19 @@ class App extends Component {
 
                 <div className = 'todo-form'>
                     <AddTodo createTodo = {this.addTodo}/>
-                    <FilterTodos filterTodos = {this.filterTodos}/>
+                    <FilterTodos changeFilter = {this.changeFilter}/>
                 </div>
 
                 {this.state.todos.length ? 
-                <TodoList   todos = {this.state.todos}
+                <TodoList   todos = {
+                                        (this.state.filtered === 'all' && this.state.todos) ||
+                                        (this.state.filtered === 'completed' && this.state.todos.filter(todo => todo.completed === true)) ||
+                                        (this.state.filtered === 'uncompleted' && this.state.todos.filter(todo => todo.completed === false))
+                            }
                             completeTodo = {this.completeTodo}
                             removeTodo = {this.removeTodo}
                             onCreate = {this.editTodo}
-                            filteredTodos = {this.state.filteredTodos}
+
                 /> : <p className = 'no-todos'>No todos!</p>}
             </div>
         )
