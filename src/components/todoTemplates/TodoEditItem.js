@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import CompleteBtn from '../buttons/CompleteBtn';
+import SaveBtn from '../buttons/SaveBtn';
+import DeleteBtn from '../buttons/DeleteBtn';
 
 class TodoEditItem extends Component {
     render() {
@@ -8,7 +11,6 @@ class TodoEditItem extends Component {
         }
         const submitHandler = (event) => {
             event.preventDefault();
-            console.log('---', input.value);
             toggleEditTodo(isEdit);
             if (input.value.trim()) {
                 editTodo(todo.id, input.value);
@@ -26,18 +28,14 @@ class TodoEditItem extends Component {
                 />
                             
                 <div className = 'todo__buttons'>
+                    <CompleteBtn    todo = {todo}
+                                    isEdit = {isEdit} 
+                    />
+                    <SaveBtn />
+                    <DeleteBtn  todo = {todo}
+                                removeTodo = {removeTodo}
+                    /> 
                     
-                    <button className = 'todo__complete-btn' type = "button" disabled = {true}>
-                        <i className = 'fas fa-check'></i>
-                    </button>
-
-                    <button className = 'todo__edit-btn' type = "submit" >
-                        <i className = 'fas fa-save'></i>
-                    </button>
-                    
-                    <button className = 'todo__delete-btn' type = "button" onClick = {() => removeTodo(todo.id)}>        
-                        <i className ="fas fa-trash"></i>
-                    </button>
 
                 </div>
             </form>
@@ -46,3 +44,17 @@ class TodoEditItem extends Component {
 }
 
 export default TodoEditItem;
+
+/*
+<button className = 'todo__complete-btn' type = "button" disabled = {true}>
+    <i className = 'fas fa-check'></i>
+</button>
+
+<button className = 'todo__edit-btn' type = "submit" >
+    <i className = 'fas fa-save'></i>
+</button>
+
+<button className = 'todo__delete-btn' type = "button" onClick = {() => removeTodo(todo.id)}>        
+    <i className ="fas fa-trash"></i>
+</button>
+*/

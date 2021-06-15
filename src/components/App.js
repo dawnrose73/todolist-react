@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import AddTodo from './AddTodo';
 import TodoList from './TodoList';
 
 
@@ -19,8 +20,7 @@ class App extends Component {
     };
 
     completeTodo = (id) => {
-        this.setState({
-            
+        this.setState({ 
             todos: this.state.todos.map(todo => {
                 if (todo.id === id) {
                     todo.completed = !todo.completed;
@@ -46,8 +46,17 @@ class App extends Component {
                 return todo;
             })
         })
-    }
+    };
 
+    addTodo = (title) => {
+        this.setState({
+            todos:  this.state.todos.concat([{
+                        id: Date.now(),        
+                        title,
+                        completed: false
+                    }])
+        })
+    };
 
     render() {
         console.log(this.state.todos);
@@ -57,12 +66,16 @@ class App extends Component {
                     <h1 className = 'header__text'>Todo list</h1>
                 </header>
 
+                <div className = 'todo-form'>
+                    <AddTodo createTodo = {this.addTodo}/>
+                </div>
+
                 {this.state.todos.length ? 
                 <TodoList   todos = {this.state.todos}
                             completeTodo = {this.completeTodo}
                             removeTodo = {this.removeTodo}
                             onCreate = {this.editTodo}
-                /> : <p>No todos!</p>}
+                /> : <p className = 'no-todos'>No todos!</p>}
             </div>
         )
     }

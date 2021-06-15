@@ -28,7 +28,7 @@
             align-items: center;
   }
   
-  /* body form {
+  .todo-form {
     min-height: 20vh;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -39,9 +39,10 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-  }
+} 
   
-  body form div.enter-todo {
+  
+  .todo-form__new-todo {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -51,9 +52,9 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-  }
+  } 
   
-  body form div.enter-todo input {
+  .todo-form__todo-input {
     outline: none;
     border: none;
     font-size: 2rem;
@@ -62,7 +63,7 @@
     max-width: 100%;
   }
   
-  body form div.enter-todo button {
+  .todo-form__todo-button {
     outline: none;
     border: none;
     font-size: 2rem;
@@ -75,12 +76,35 @@
     transition: all 0.3s ease;
   }
   
-  body form div.enter-todo button:hover {
+  .todo-form__todo-button:hover {
     background: #d88771;
     color: #ffffff;
   }
+
+  .todo-form__filter-todos {
+    margin-left: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
   
-  select {
+  .todo-form__filter-todos::after {
+    content: "\25BC";
+    position: absolute;
+    background: #d88771;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+    padding: 1rem;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  .todo-form__filter-todos:hover::after {
+    background: #ffffff;
+    color: #d88771;
+  }
+
+  .todo-form__filter {
     -webkit-appearance: none;
        -moz-appearance: none;
             appearance: none;
@@ -93,30 +117,19 @@
     cursor: pointer;
     padding: 1.2rem;
   }
-  
-  .select {
-    margin-left: 1rem;
-    position: relative;
-    overflow: hidden;
+
+  .no-todos {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 2rem;
   }
-  
-  .select::after {
-    content: "\25BC";
-    position: absolute;
-    background: #d88771;
-    top: 0;
-    right: 0;
-    pointer-events: none;
-    padding: 1rem;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-  }
-  
-  .select:hover::after {
-    background: #ffffff;
-    color: #d88771;
-  }
-   */
 
   .todolist {
     display: -webkit-box;
