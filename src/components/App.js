@@ -2,62 +2,82 @@ import React, {Component} from 'react';
 import AddTodo from './AddTodo';
 import FilterTodos from './FilterTodos';
 import TodoList from './TodoList';
+import Loader from './Loader';
 
 
 class App extends Component {
     state = {
-        todos: [
-            {
-                id: 1,
-                title: "clean the floor",
-                completed: false
-            },
-            {
-                id: 2,
-                title: "wash dishes",
-                completed: false
-            }
-        ],
-        filtered: 'all'
-    };
+            todos: [],
+            filtered: 'all',
+            loading: true
+    }
+    
+    componentDidMount() {
+        this.getData();
+        console.log(this.state.todos);
+    }
 
-    completeTodo = (id) => {
-        this.setState({ 
-            todos: this.state.todos.map(todo => {
-                if (todo.id === id) {
-                    todo.completed = !todo.completed;
-                }
-                return todo;
+    getData = () => {
+        fetch('http://127.0.0.1:5000/tasks/')
+        .then(response => response.json())
+        .then(todos => {
+          this.setState({
+              todos: todos.data,
+          }) 
+        })
+        .then(() => {
+            this.setState({
+                loading: false
             })
         })
     };
 
-    removeTodo = (id) => {
-        this.setState({
-            todos: this.state.todos.filter(todo => todo.id !== id)
+    completeTodo = (todo) => {
+        fetch((`http://127.0.0.1:5000/tasks/edit/${todo.id}/`), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ completed : !todo.completed})
         })
+        .then(() => this.getData())
+    };
+
+    removeTodo = (id) => {
+        fetch((`http://127.0.0.1:5000/tasks/delete/${id}/`), {
+            method: 'DELETE',
+        }) 
+        .then(() => this.getData()) 
     };
 
     editTodo = (id, value) => {
         this.setState({
-            
-            todos: this.state.todos.map(todo => {
+            todos: this.state.todos.map((todo) => {
                 if (todo.id === id) {
-                    todo.title = value
-                }
+                    todo.task = value
+                };
                 return todo;
             })
+        });
+        fetch((`http://127.0.0.1:5000/tasks/edit/${id}/`), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ task : value})
         })
+        .then(() => this.getData())
     };
 
-    addTodo = (title) => {
-        this.setState({
-            todos:  this.state.todos.concat([{
-                        id: Date.now(),        
-                        title,
-                        completed: false
-                    }])
-        })
+    addTodo = (task) => {
+        fetch(('http://127.0.0.1:5000/tasks/add/'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( { id: Date.now(), task: task, completed: false })
+            })
+            .then(() => this.getData())
     };
 
     changeFilter = (option) => {
@@ -67,7 +87,6 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.todos);
         return (
             <div className = 'container'>
                 <header className = 'header'>
@@ -78,7 +97,7 @@ class App extends Component {
                     <AddTodo createTodo = {this.addTodo}/>
                     <FilterTodos changeFilter = {this.changeFilter}/>
                 </div>
-
+                {this.state.loading && <Loader />}
                 {this.state.todos.length ? 
                 <TodoList   todos = {
                                         (this.state.filtered === 'all' && this.state.todos) ||
@@ -89,7 +108,8 @@ class App extends Component {
                             removeTodo = {this.removeTodo}
                             onCreate = {this.editTodo}
 
-                /> : <p className = 'no-todos'>No todos!</p>}
+                /> : (this.state.loading ? null : <p className = 'no-todos'>No todos!</p>)
+                }
             </div>
         )
     }

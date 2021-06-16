@@ -6,7 +6,7 @@ class CompleteBtn extends Component {
         return (
             <button className = 'todo__complete-btn'
                     disabled = {isEdit ? true : false}
-                    onClick = {() => completeTodo(todo.id)}
+                    onClick = {() => completeTodo(todo)}
             >
                 <i className = {todo.completed ? 'fas fa-undo' : 'fas fa-check'}></i>
             </button>
