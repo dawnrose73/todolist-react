@@ -1,3 +1,7 @@
+# todolist-react
+Training 'todolist' React project. User's capabilities: there is possible to add new tasks, to mark them completed, to edit and save, to delete; also there is filter by task status.
+Technologies and tools: BEM, React JS.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
